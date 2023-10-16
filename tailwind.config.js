@@ -9,7 +9,8 @@ module.exports = {
         'light-green': '#AEBC6E',
         'dark-green': '#768D4C',
         'darker-green': '#335243',
-        'white-dirty': '#F5F2E3'
+        'white-dirty': '#F5F2E3',
+        'dark-pink-shadow': '#B38496'
       },
     },
   },
