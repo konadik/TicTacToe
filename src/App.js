@@ -1,25 +1,29 @@
-import Cart from "./components/Cart";
-import Board from "./components/Board";
-import Result from "./components/Result";
-import Options from "./components/Options";
-import {useState} from "react";
+import React, { useState } from 'react';
+import Cart from './components/Cart';
+import Board from './components/Board';
+import Result from './components/Result';
+import Options from './components/Options';
 
 function App() {
-    const [currentPlayer, setCurrentPlayer] = useState('X');
-    const handleCurrentSign = (newSign) =>{
-        if(newSign === true){
-        setCurrentPlayer('X')}else{
-            setCurrentPlayer('O')
-        }
+    const [clearBoard, setClearBoard] = useState(false);
+    const [resultsList, setResultsList] = useState({
+        wins: 0,
+        draws: 0,
+        losses: 0
+    });
+    const handleClearBoard = () => {
+        setClearBoard(!clearBoard);
     }
 
-
+    const handleUpdateResults = (newList) =>{
+        setResultsList(newList);
+    }
 
     return (
         <Cart>
-            <Options currentPlayer={currentPlayer}/>
-            <Board getCurrentSign={handleCurrentSign}/>
-            <Result/>
+            <Options handleClearBoard={handleClearBoard} />
+            <Board clearBoard={clearBoard} resultsList={resultsList} updateResults={handleUpdateResults} />
+            <Result resultsToDisplay={resultsList}  />
         </Cart>
     );
 }
