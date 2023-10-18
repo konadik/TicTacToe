@@ -12,6 +12,9 @@ module.exports = {
         'white-dirty': '#F5F2E3',
         'dark-pink-shadow': '#B38496'
       },
+      fontFamily: {
+        roboto: ['Roboto', 'sans'],
+      },
     },
   },
   plugins: [],

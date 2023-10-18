@@ -12,7 +12,7 @@ const TurnButton = ()=>{
                     {/*) : (*/}
                         <img className="h-3 w-3" src={oSvg} alt="cross svg"/>
                     {/*)}*/}
-                    <h1 className="uppercase font-bold tracking-wider text-xs">turn</h1>
+                    <h1 className="uppercase font-bold tracking-wider text-xs font-roboto ">turn</h1>
                 </div>
                 <div className="bg-light-pink h-9 w-28 rounded-2xl shadow-xl z-10 "/>
             </div>

@@ -22,6 +22,7 @@ const Board = ({clearBoard, updateResults}) => {
             updateResults((prevResults) => ({
                 ...prevResults,
                 wins: prevResults.wins + 1,
+                winner: "X"
             }));
             setWinningLine(winner.winningPattern);
         }
@@ -29,6 +30,7 @@ const Board = ({clearBoard, updateResults}) => {
             updateResults((prevResults) => ({
                 ...prevResults,
                 losses: prevResults.losses + 1,
+                winner: "O"
             }));
             setWinningLine(winner.winningPattern);
         }
@@ -36,6 +38,7 @@ const Board = ({clearBoard, updateResults}) => {
             updateResults((prevResults) => ({
                 ...prevResults,
                 draws: prevResults.draws + 1,
+                winner: "D"
             }));
         }
     }, [clickedCells]);
@@ -50,7 +53,7 @@ const Board = ({clearBoard, updateResults}) => {
 
     return (
         <div>
-            <div className="grid grid-cols-3 gap-2 gap-y-4">
+            <div className="grid grid-cols-3 gap-2 gap-y-4  gap-x-3">
                 {clickedCells.map((symbol, index) => (
                     <Cell key={index} index={index} onCellClick={handleCellClick}
                           isClicked={symbol} isPartOfWinningLine={winningLine && winningLine.includes(index)} />
