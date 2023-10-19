@@ -3,6 +3,7 @@ import imgX from './assets/x-symbol-svgrepo-com.svg'
 import imgO from './assets/o-symbol.svg'
 import "../index.css"
 import Button from "./Button";
+import {Link} from "react-router-dom";
 
 const WinModal = ({onClose, signChosen}) => {
     return (
@@ -22,8 +23,13 @@ const WinModal = ({onClose, signChosen}) => {
             </div>
 
             <div className="div flex flex-row items-center justify-center space-x-3 ">
+                <Link to={`/`}>
                 <Button color="bg-light-green" text="Quit" width='w-24' />
+            </Link>
+
+                <Link to={`/game`}>
                 <Button color="bg-white-dirty" text="Next round" width='w-36' onClick={onClose}/>
+                </Link>
             </div>
         </div>
 

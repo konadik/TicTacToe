@@ -1,49 +1,26 @@
 import React, {useEffect, useState} from 'react';
-import Cart from './components/Cart';
-import Board from './components/Board';
-import Result from './components/Result';
-import Options from './components/Options';
-import WinModal from "./components/WinModal";
-import ReactDOM from 'react-dom';
-
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import HomePage from "./components/HomePage";
+import GamePage from "./components/GamePage";
 
 
 function App() {
-    const [clearBoard, setClearBoard] = useState(false);
-    const [resultsList, setResultsList] = useState({
-        wins: 0,
-        draws: 0,
-        losses: 0,
-        winner: ""
-    });
-    const [isGameFinished, setIsGameFinished]  = useState(false);
-    const handleClearBoard = () => {
-        setClearBoard(!clearBoard);
-    }
+    const [openHomePage, setOpenHomePage]=useState(true);
+    const [chosenSign, setChosenSign] = useState('');
 
-    const handleUpdateResults = (newList) =>{
-        setResultsList(newList);
-        setIsGameFinished(true);
+    const handleChoosingSign = (chosenMark) =>{
+        setChosenSign(chosenMark);
     }
-
-    const handleNewGame = ()=>{
-        setIsGameFinished(false);
-        setClearBoard(!clearBoard);
-    }
-
 
     return (
-        <Cart>
-            {isGameFinished && (
-                ReactDOM.createPortal(
-                    <WinModal onClose={handleNewGame} signChosen={resultsList.winner}/>,
-                    document.getElementById('modal-root')
-                )
-            )}
-            <Options handleClearBoard={handleClearBoard} />
-            <Board clearBoard={clearBoard} updateResults={handleUpdateResults} />
-            <Result resultsToDisplay={resultsList}  />
-        </Cart>
+        <Router>
+            <Routes>
+                {openHomePage &&  <Route path="/" element={<HomePage setChosenSign={handleChoosingSign}/>}/> }
+                <Route path="/game" element={<GamePage chosenSign={chosenSign}/>}/>
+            </Routes>
+
+
+        </Router>
     );
 }
 
