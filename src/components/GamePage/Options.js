@@ -1,10 +1,11 @@
 import React from 'react';
-import crossSvg from './assets/x-symbol-svgrepo-com.svg';
-import oSvg from './assets/o-symbol.svg';
+import crossSvg from '../assets/x-symbol-svgrepo-com.svg';
+import oSvg from '../assets/o-symbol.svg';
 import TurnButton from './TurnButton';
 import {Link} from "react-router-dom";
+import icon from '../assets/turn-around.png'
 
-const Options = ({handleClearBoard}) => {
+const Options = ({handleClearBoard, currentPlayer}) => {
     return (
         <div className="grid grid-cols-3 gap-2 flex items-center">
 
@@ -15,13 +16,12 @@ const Options = ({handleClearBoard}) => {
             </button>
         </Link>
 
-            <TurnButton/>
+            <TurnButton currentPlayer={currentPlayer}/>
 
             <button
                 onClick={handleClearBoard}
-                className="justify-self-end rounded-xl w-10 h-9 bg-white-dirty shadow-md hover:bg-white transition-colors duration-200"
-            >
-                C
+                className="justify-self-end rounded-xl w-10 h-9 bg-white-dirty shadow-md hover:bg-white transition-colors duration-200 flex items-center justify-center">
+                <img src={icon} alt={`turn`} className={`h-4 w-4`}/>
             </button>
         </div>
     );

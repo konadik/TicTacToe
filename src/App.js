@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import HomePage from "./components/HomePage";
-import GamePage from "./components/GamePage";
+import HomePage from "./components/HomePage/HomePage";
+import GamePage from "./components/GamePage/GamePage";
 
 
 function App() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import oSvg from "./assets/o-symbol.svg";
-import crossSvg from './assets/x-symbol-svgrepo-com.svg';
+import oSvg from "../assets/o-symbol.svg";
+import crossSvg from '../assets/x-symbol-svgrepo-com.svg';
 
 const Cell = ({ index, onCellClick, isClicked, isPartOfWinningLine }) => {
 

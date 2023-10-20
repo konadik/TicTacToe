@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Button = ({width, color, text, onClick}) => {
+const Button = ({width, color, text, onClick, disabled}) => {
     return (
-        <button onClick={onClick}>
+        <button onClick={onClick} disabled={disabled}>
             <div className="relative  tracking-wider font-bold">
                 <div
                     className={`${color} h-14 ${width} rounded-2xl uppercase text-md absolute bottom-1 left-0 z-0 hover:bg-dark-pink-shadow transition-colors duration-200 flex items-center justify-center`}

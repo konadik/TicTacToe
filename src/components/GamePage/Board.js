@@ -1,9 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Cell from './Cell';
 
-const Board = ({clearBoard, updateResults}) => {
+const Board = ({clearBoard, updateResults, player, isCross, click}) => {
     const [clickedCells, setClickedCells] = useState(Array(9).fill(null));
-    const [isCross, setIsCross] = useState(true);
     const  [winningLine, setWinningLine] = useState(null);
 
     const handleCellClick = (index) => {
@@ -11,26 +10,26 @@ const Board = ({clearBoard, updateResults}) => {
             const newClickedCells = [...clickedCells];
             newClickedCells[index] = isCross ? 'X' : 'O';
             setClickedCells(newClickedCells);
-            setIsCross(!isCross);
+            click(!isCross);
         }
     };
 
 
     useEffect(() => {
         const winner = checkWinner(clickedCells);
-        if (winner && winner.result === 'win' && winner.player ==='X') {
+        if (winner && winner.result === 'win' && winner.player === player) {
             updateResults((prevResults) => ({
                 ...prevResults,
                 wins: prevResults.wins + 1,
-                winner: "X"
+                winner: player
             }));
             setWinningLine(winner.winningPattern);
         }
-       else if (winner && winner.result === 'win' && winner.player ==='O') {
+       else if (winner && winner.result === 'win' && winner.player !== player) {
             updateResults((prevResults) => ({
                 ...prevResults,
                 losses: prevResults.losses + 1,
-                winner: "O"
+                winner: player === 'X' ? 'O' : 'X'
             }));
             setWinningLine(winner.winningPattern);
         }
