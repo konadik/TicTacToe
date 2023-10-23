@@ -6,7 +6,7 @@ import Options from './Options';
 import WinModal from "./WinModal";
 import ReactDOM from 'react-dom';
 
-const  GamePage=({chosenSign})=> {
+const  GamePage=({chosenSign, mode})=> {
     const [clearBoard, setClearBoard] = useState(false);
     const [isCross, setIsCross] = useState(true);
     const [resultsList, setResultsList] = useState({
@@ -47,7 +47,7 @@ const  GamePage=({chosenSign})=> {
                 )
             )}
             <Options handleClearBoard={handleClearBoard} currentPlayer={isCross} />
-            <Board clearBoard={clearBoard} updateResults={handleUpdateResults} player={chosenSign} isCross={isCross} click={handleSign}/>
+            <Board clearBoard={clearBoard} updateResults={handleUpdateResults} player={chosenSign} isCross={isCross} click={handleSign} mode={mode}/>
             <Result resultsToDisplay={resultsList} signToDisplay={chosenSign} />
         </Cart>
 

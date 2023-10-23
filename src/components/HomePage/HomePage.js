@@ -6,7 +6,7 @@ import oSvg from "../assets/o-symbol.svg";
 import PlayerMark from "./PlayerMark";
 import {Link} from "react-router-dom";
 
-const HomePage = ({setChosenSign}) => {
+const HomePage = ({setChosenSign, mode}) => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [animation, setAnimation] = useState(false)
 
@@ -14,13 +14,19 @@ const HomePage = ({setChosenSign}) => {
         setIsButtonDisabled(value);
     }
 
-    const checkIfMarkIsChosen = () => {
+    const handleClick = (selectedMode) => {
         if (isButtonDisabled === true) {
             setAnimation(true);
             setTimeout(()=>{
                 setAnimation(false)
             }, 1450)
 
+        }else{
+            if(selectedMode === 'userVsComputer'){
+                mode('userVsComputer')
+            }else{
+                mode('userVsUser')
+            }
         }
     }
 
@@ -51,10 +57,10 @@ const HomePage = ({setChosenSign}) => {
 
                 <div className={`flex flex-col  space-y-5`} >
                     <Link to={isButtonDisabled ? "#" : "/game"} >
-                        <Button color="bg-light-green" text="NEW GAME (VS CPU)" width='w-96' onClick={checkIfMarkIsChosen}/>
+                        <Button id={`userVsComputer`} color="bg-light-green" text="NEW GAME (VS CPU)" width='w-96' onClick={() => handleClick('userVsComputer')}/>
                     </Link>
                     <Link to={isButtonDisabled ? "#" : "/game"}>
-                        <Button color="bg-white-dirty" text="NEW GAME " width='w-96' onClick={checkIfMarkIsChosen}/>
+                        <Button id={`userVsUser`}  color="bg-white-dirty" text="NEW GAME " width='w-96' onClick={() => handleClick('userVsUser')}/>
                     </Link>
                 </div>
             </div>

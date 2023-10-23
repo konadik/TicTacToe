@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Cell from './Cell';
 
-const Board = ({clearBoard, updateResults, player, isCross, click}) => {
+const Board = ({clearBoard, updateResults, player, isCross, click, mode}) => {
     const [clickedCells, setClickedCells] = useState(Array(9).fill(null));
-    const  [winningLine, setWinningLine] = useState(null);
+    const [winningLine, setWinningLine] = useState(null);
 
     const handleCellClick = (index) => {
         if (!clickedCells[index]) {
@@ -43,7 +43,6 @@ const Board = ({clearBoard, updateResults, player, isCross, click}) => {
     }, [clickedCells]);
 
 
-
     useEffect(() => {
         setClickedCells(Array(9).fill(null));
         setWinningLine(null);
@@ -55,7 +54,7 @@ const Board = ({clearBoard, updateResults, player, isCross, click}) => {
             <div className="grid grid-cols-3 gap-2 gap-y-4  gap-x-3">
                 {clickedCells.map((symbol, index) => (
                     <Cell key={index} index={index} onCellClick={handleCellClick}
-                          isClicked={symbol} isPartOfWinningLine={winningLine && winningLine.includes(index)} />
+                          isClicked={symbol} isPartOfWinningLine={winningLine && winningLine.includes(index)}/>
                 ))}
             </div>
         </div>
@@ -74,7 +73,7 @@ const Board = ({clearBoard, updateResults, player, isCross, click}) => {
         for (const pattern of winPatterns) {
             const [a, b, c] = pattern;
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                return {result: "win", winningPattern: pattern, player:board[a]};
+                return {result: "win", winningPattern: pattern, player: board[a]};
             }
         }
 
